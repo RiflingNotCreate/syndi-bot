@@ -8,6 +8,17 @@ const DBM = {};
 DBM.version = "1.6.10";
 
 const DiscordJS = DBM.DiscordJS = require("discord.js");
+const express = require('express');
+const keepalive = require('express-glitch-keepalive');
+const app = express();
+app.use(keepalive);
+app.get('/', (req, res) => {
+res.json('Бот запущен!');
+});
+app.get("/", (request, response) => {
+response.sendStatus(200);
+});
+app.listen(process.env.PORT);
 
 if(DiscordJS.version < "12.0.0") {
 	console.log("This version of Discord Bot Maker requires Discord.JS v12.\nPlease use \"Project > Module Manager\" and \"Project > Reinstall Node Modules\" to update to Discord.JS v12.");
